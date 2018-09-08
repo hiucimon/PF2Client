@@ -1,5 +1,5 @@
 
-export interface ICharaacter {
+export interface ICharacter {
   Name: string;
   Ancestry: string;
   Size: string;

@@ -1,16 +1,6 @@
-<!--The content below is only a placeholder and can be replaced.-->
 
 
-<p>before</p>
-<img src="assets/img/UNTRAINED.gif">Untrained
-<img src="assets/img/TRAINED.gif">Trained
-<img src="assets/img/EXPERT.gif">Expert
-<img src="assets/img/MASTER.gif">Master
-<img src="assets/img/LEGENDARY.gif">Legendary
-<p>after</p>
-<ul>
-  <li *ngFor="let a of PF2Ancestry">
-    {{a.Ancestry}}
-  </li>
-</ul>
-
+<p>{{a}}</p>
+<input [(ngModel)]="character.Name" #ctrl="ngModel" required>
+{{character.Name}}
+<app-stat-block></app-stat-block>

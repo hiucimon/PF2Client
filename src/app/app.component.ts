@@ -7,6 +7,7 @@ import {IPF2Ancestry} from '../../pf2ancestry';
 import {IPF2Class} from '../../pf2class';
 import {IPF2Background} from '../../pf2background';
 import {Pf2dataService} from './pf2data.service';
+import {ICharacter} from './Character';
 
 @Component({
   selector: 'app-root',
@@ -18,8 +19,8 @@ export class AppComponent implements OnInit {
   public PF2Ancestry = [];
   public PF2Background = [];
   public PF2Class = [];
-  public a = [];
-
+  public character:ICharacter;
+  public a;
   title = 'app';
 
   constructor(private http: HttpClient,private pf2dataservice:Pf2dataService) {
@@ -42,8 +43,31 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.character=new class implements ICharacter {
+      Age: number;
+      Alignment: string;
+      Ancestry: string;
+      ArmorClass: { AC: { Training: number; Item: number; DexCap: number }; TAC: { Training: number; Item: number; DexCap: number } };
+      ArmorProficiencies: { Name: string; Training: number }[];
+      Attributes: { Name: string; LongName: string; Score: number; Modifier: number }[];
+      Background: string;
+      Class: { Name: string; Level: number };
+      Deity: string;
+      Gender: string;
+      Language: string[];
+      MeleeStrikes: { Name: string; Ability: string; Training: number; Item: number; Damage: { StrMod: number; Bludgeoning: boolean; Piercing: boolean; Slashing: boolean; Training: number; OtherDamage: number; Traights: string[] } }[];
+      Name: string;
+      Perception: { Training: number; Item: number; Effective: number };
+      RangedStrikes: { Name: string; DexMod: number; Training: number; Item: number; Damage: { Bludgeoning: boolean; Piercing: boolean; Slashing: boolean; OtherDamage: number; Range: number; Traights: string[] } }[];
+      SavingThrows: { Fortitude: { Training: number; Item: number; Effective: number }; Reflex: { Training: number; Item: number; Effective: number }; Will: { Training: number; Item: number; Effective: number } };
+      Size: string;
+      Skills: { Name: string; SubName: string; Signature: boolean; Attribute: string; Mod: number; Training: number; Item: number; ArmorEffect: boolean; Armor: number }[];
+      Speed: number;
+      WeaponProficiencies: { Name: string; Training: number }[];
+    };
+    this.a='junk;'
     this.getAttributes().subscribe(data => this.PF2Attributes = data);
-    this.getAncestries().subscribe(data => this.PF2Ancestry = data);
+    // this.getAncestries().subscribe(data => this.PF2Ancestry = data);
     this.getClasses().subscribe(data => this.PF2Class = data);
     this.getBackgrounds().subscribe(data => this.PF2Background = data);
     // this.a = this.pf2dataservice.getTheClasses();
